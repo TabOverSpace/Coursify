@@ -47,7 +47,8 @@ public class Fourth extends AppCompatActivity
 
     public ListView a;
     public CharSequence query;
-    public int get2 = 0;
+    public int get2,c1,c2,c3,c4 = 0;
+    public String level2="";
     public String value="";
 
 
@@ -121,52 +122,33 @@ public class Fourth extends AppCompatActivity
         //get pos no. from previous activity
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Mypref", MODE_PRIVATE);
 
-        int get=0;
 
 
-        get2 = pref.getInt("position_number",get);
 
-        TextView a = (TextView)findViewById(R.id.what);
+        get2 = pref.getInt("position_number",0);
+
+        c1 = pref.getInt("c1",0);
+        c2 = pref.getInt("c2",0);
+        c3 = pref.getInt("c3",0);
+        c4 = pref.getInt("c4",0);
 
 
-        if(value.equals("0")) {
-            switch (get2) {
 
-                case 5:
-                    a.setText("Programming Languages");
-                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/1-5ErS-ilnGz7c282lUwQs803dXqDNyz1xT4EmfluXFo/values/Sheet1!A2:E153?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
-                    break;
-                case 6:
-                    a.setText("Web Development");
-                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/1rtuFGn-D6H2OF7cQzPCjihKxPYeNUVoY6YV_XaPrpos/values/Sheet1!A2:E153?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
-                    break;
 
-                case 7:
-                    a.setText("App Development");
-                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/1UeD3FhBq_4Inxvb2k0bNPeXPBozfUDqhToAi7bFtTm4/values/Sheet1!A2:E116?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
-                    break;
+        level2 = pref.getString("level","ho");
 
-            }
-        }
-        if(value.equals("1")) {
-            switch (get2) {
 
-                case 7:
-                    a.setText("Philosophy");
-                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/19rGoN5Ks_7pwLptQDkBWXA4v6G6FVQDWxYxISKPmOmk/values/Sheet1!A2:E116?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
-                    break;
 
-            }
-        }
+
 
 
         //done pos\
 
+        value(cm);
 
             //PROGRESS
-        ProgressBar pbar  = (ProgressBar)findViewById(R.id.progress);
-        pbar.setVisibility(View.VISIBLE);
 
+        pvisible();
 
         EditText fg = (EditText)findViewById(R.id.filter);
 
@@ -177,7 +159,7 @@ public class Fourth extends AppCompatActivity
                 public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                     // When user changed the Text
 
-                    query  =  cs;
+                    query  =  cs.toString().toLowerCase();
 
                     CourseMagic cm = new CourseMagic();
                     //the api of sheets
@@ -235,7 +217,10 @@ public class Fourth extends AppCompatActivity
                 }
             });
         }
-
+Log.d("c1",String.valueOf(c1));
+        Log.d("c2",String.valueOf(c2));
+        Log.d("c3",String.valueOf(c3));
+        Log.d("c4",String.valueOf(c4));
 
     }
 
@@ -423,69 +408,9 @@ public class Fourth extends AppCompatActivity
                 Course_Holder ch = new Course_Holder(currentcourse.getString(2),currentcourse.getString(0),currentcourse.getString(1),currentcourse.getString(3),currentcourse.getString(4));
 
 
-
-                if(!query.equals("")){
-
-
-                    if(currentcourse.getString(2).toLowerCase().contains(query)){
-
-                        courses.add(ch);
+                level(currentcourse.getString(3),courses,ch,currentcourse);
 
 
-                    }
-                    else{
-                        if(currentcourse.getString(0).toLowerCase().contains(query)){
-
-                            courses.add(ch);
-
-
-                        }
-
-                        else{
-
-                            if(currentcourse.getString(1).toLowerCase().contains(query)){
-
-                                courses.add(ch);
-
-
-                            }
-
-                            else{
-
-                                if(currentcourse.getString(3).toLowerCase().contains(query)){
-
-                                    courses.add(ch);
-
-
-                                }
-                                else{
-
-                                    if(currentcourse.getString(4).toLowerCase().contains(query)){
-
-                                        courses.add(ch);
-
-
-                                    }
-
-                                }
-
-
-                            }
-
-                        }
-                    }
-
-
-                }
-
-                if(query.equals("")){
-
-
-                    courses.add(ch);
-
-                }
-                
-                
                 
                }
         } catch (JSONException e) {
@@ -537,8 +462,7 @@ public class Fourth extends AppCompatActivity
             if (data != null && !data.isEmpty()) {
                 mAdapter.addAll(data);
 
-                ProgressBar pbar  = (ProgressBar)findViewById(R.id.progress);
-                pbar.setVisibility(View.GONE);
+                pgone();
 
 
                 ImageView d  = (ImageView)findViewById(R.id.search);
@@ -590,13 +514,242 @@ public class Fourth extends AppCompatActivity
 
     public void back(View v){
 
-        Intent i = new Intent(this,First.class);
+        Intent i = new Intent(this,First2.class);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         finish();
 
+
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
 
+    public void value(CourseMagic cm){
+        TextView a = (TextView)findViewById(R.id.what);
+
+        if(value.equals("0")) {
+            switch (get2) {
+
+                case 5:
+                    a.setText("Programming Languages");
+                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/1-5ErS-ilnGz7c282lUwQs803dXqDNyz1xT4EmfluXFo/values/Sheet1!A2:E153?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
+                    break;
+                case 6:
+                    a.setText("Web Development");
+                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/1rtuFGn-D6H2OF7cQzPCjihKxPYeNUVoY6YV_XaPrpos/values/Sheet1!A2:E153?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
+                    break;
+
+                case 7:
+                    a.setText("App Development");
+                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/1UeD3FhBq_4Inxvb2k0bNPeXPBozfUDqhToAi7bFtTm4/values/Sheet1!A2:E116?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
+                    break;
+
+            }
+        }
+        if(value.equals("1")) {
+            switch (get2) {
+
+                case 7:
+                    a.setText("Philosophy");
+                    cm.execute("https://sheets.googleapis.com/v4/spreadsheets/19rGoN5Ks_7pwLptQDkBWXA4v6G6FVQDWxYxISKPmOmk/values/Sheet1!A2:E116?key=AIzaSyBa8lxt2dSjV5aw9RkU0uh38h6jYCI9mm8");
+                    break;
+
+            }
+        }
+
+
+    }
+
+    public void pvisible (){
+
+        ProgressBar pbar  = (ProgressBar)findViewById(R.id.progress);
+        pbar.setVisibility(View.VISIBLE);
+
+    }
+
+    public void pgone (){
+
+        ProgressBar pbar  = (ProgressBar)findViewById(R.id.progress);
+        pbar.setVisibility(View.GONE);
+
+    }
+    public void Query(CharSequence query,JSONArray currentcourse ,List<Course_Holder> courses ,Course_Holder ch){
+        if(!query.equals("")){
+
+
+            try {
+                if(currentcourse.getString(2).toLowerCase().contains(query)){
+                courses.add(ch);
+                }
+                else{
+                    try {
+                        if(currentcourse.getString(0).toLowerCase().contains(query)){
+
+                            courses.add(ch);
+
+                        }
+
+                        else{
+
+                            try {
+                                if(currentcourse.getString(1).toLowerCase().contains(query)){
+
+
+                                    courses.add(ch);
+
+
+                                }
+
+                                else{
+
+                                    if(currentcourse.getString(3).toLowerCase().contains(query)){
+
+                                        courses.add(ch);
+
+
+                                    }
+                                    else{
+
+                                        if(currentcourse.getString(4).toLowerCase().contains(query)){
+
+                                            courses.add(ch);
+
+
+                                        }
+
+                                    }
+
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        if(query.equals("")){
+
+
+            courses.add(ch);
+
+        }
+    }
+
+
+
+    public void level(String level,List<Course_Holder> courses,Course_Holder ch,JSONArray currentcourses){
+        if(c1==0){
+
+            try {
+                if(currentcourses.getString(1).equals("Udacity")){
+
+                    if(level2.equals("All Levels")){
+
+                        courses.add(ch);
+
+                    }
+                    else {
+                        if (level.equals(level2)) {
+                            Query(query, currentcourses, courses, ch);
+
+
+                        }
+                    }
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if(c2==0){
+
+            try {
+                if(currentcourses.getString(1).equals("edx")){
+
+                    if(level2.equals("All Levels")){
+
+                        courses.add(ch);
+
+                    }
+                    else {
+                        if (level.equals(level2)) {
+                            Query(query, currentcourses, courses, ch);
+
+
+                        }
+                    }
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(c3==0){
+
+            try {
+                if(currentcourses.getString(1).equals("Udemy")){
+
+                    if(level2.equals("All Levels")){
+
+                        courses.add(ch);
+
+                    }
+                    else {
+                        if (level.equals(level2)) {
+                            Query(query, currentcourses, courses, ch);
+
+
+                        }
+                    }
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(c4==0){
+
+            try {
+                if(currentcourses.getString(1).equals("Coursera")){
+
+                    if(level2.equals("All Levels")){
+
+                        courses.add(ch);
+
+                    }
+                    else {
+                        if (level.equals(level2)) {
+                            Query(query, currentcourses, courses, ch);
+
+
+                        }
+                    }
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
 
 

@@ -38,6 +38,13 @@
         <item>Philosophy</item>
     </string-array>
 
+    <string-array name="course_array4">
+        <item>All Levels</item>
+        <item>Introductory</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+    </string-array>
+
     <string name="title_activity_second">Coursify</string>
     <string name="title_activity_third">Coursify</string>
     <string name="title_activity_fourth">Fourth</string>

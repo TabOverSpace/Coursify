@@ -1,5 +1,7 @@
 package com.example.sanyogghosh.coursify;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -49,8 +51,8 @@ public class First2 extends AppCompatActivity
 
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.recommended));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.search));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.recognize));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.open_book));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -72,14 +74,15 @@ public class First2 extends AppCompatActivity
 
                                                    viewPager.setCurrentItem(tab.getPosition());
                                                    int tabn = tab.getPosition();
-                                                   if (tabn == 0) {
-
-
-                                                   }
-
-                                                   if (tabn == 1) {
-
-
+                                                   switch (tabn){
+                                                       case 0:
+                                                           tabLayout.getTabAt(0).setIcon(R.drawable.yellow_recognize);
+                                                           tabLayout.getTabAt(1).setIcon(R.drawable.open_book);
+                                                           break;
+                                                       case 1:
+                                                           tabLayout.getTabAt(0).setIcon(R.drawable.recognize);
+                                                           tabLayout.getTabAt(1).setIcon(R.drawable.book_blue);
+                                                           break;
                                                    }
                                                }
 
@@ -147,6 +150,13 @@ public class First2 extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+
+
+            Intent gh = new Intent();
+            gh.setAction(Intent.ACTION_SEND);
+            gh.setType("text/plain");
+            gh.putExtra(Intent.EXTRA_TEXT,"Coursify - your course kiosk ... \n\n"+ Uri.parse("https://play.google.com/store/apps/details?id=com.example.sanyogghosh.coursify"));
+            startActivity(gh);
 
         } else if (id == R.id.nav_send) {
 

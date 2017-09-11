@@ -3,6 +3,7 @@ package com.example.sanyogghosh.coursify;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -157,6 +158,12 @@ public class Third extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+
+            Intent gh = new Intent();
+            gh.setAction(Intent.ACTION_SEND);
+            gh.setType("text/plain");
+            gh.putExtra(Intent.EXTRA_TEXT,"Coursify - your course kiosk ... \n\n"+ Uri.parse("https://play.google.com/store/apps/details?id=com.example.sanyogghosh.coursify"));
+            startActivity(gh);
 
         } else if (id == R.id.nav_send) {
 

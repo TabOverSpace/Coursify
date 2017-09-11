@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class Course_Adapter extends ArrayAdapter<Course_Holder> {
         }
 
         final Course_Holder currentAndroidFlavor = getItem(position);
+
+        listItemView.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.slidein));
 
 
 

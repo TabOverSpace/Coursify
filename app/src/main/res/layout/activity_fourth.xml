@@ -32,6 +32,12 @@
                android:accessibilityLiveRegion="assertive"
                android:onClick="back"
                android:text="&#8426;"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -40,6 +46,16 @@
                android:id="@+id/what"
                android:layout_gravity="center"
                android:text="Results"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#d6ffffff"
+                    android:textSize="10sp"
+                    android:id="@+id/Results"
+                    android:layout_gravity="center"
+                    android:text="COURSES"/>
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="25dp"
@@ -105,10 +121,10 @@
             android:id="@+id/progress"/>
 
             <ListView
-            android:layout_width="match_parent"
-            android:id="@+id/list"
-            android:layout_marginTop="0dp"
-            android:layout_height="match_parent"/>
+                android:layout_width="match_parent"
+                android:id="@+id/list"
+                android:layout_marginTop="0dp"
+                android:layout_height="match_parent"/>
 
 
     </LinearLayout>

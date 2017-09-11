@@ -6,19 +6,21 @@ package com.example.sanyogghosh.coursify;
  */
 public class Rec_Course_Holder {
     public String course;
-    public String provider;
+    public String rating;
     public String site;
-    public String level;
-    public String url;
+    public String price;
+    public String link;
+    public String info;
 
 
-    public Rec_Course_Holder(String course, String provider, String site, String level, String url)
+    public Rec_Course_Holder(String course, String rating, String site, String price, String link,String info)
     {
         this.course=course;
-        this.provider=provider;
+        this.rating=rating;
+        this.info=info;
         this.site=site;
-        this.level=level;
-        this.url=url;
+        this.price=price;
+        this.link=link;
 
 
     }
@@ -26,20 +28,20 @@ public class Rec_Course_Holder {
     /**
      * Get the name of the Android version
      */
-    public String  course() {
+    public String     course() {
         return course;
     }
-    public String  provider() {
-        return provider;
+    public String     rating() {
+        return rating;
     }
-    public String  site() {
+    public String     site() {
         return site;
     }
-    public String  level() {
-        return level;
+    public String     price() {
+        return price;
     }
-    public String     url() {
-        return url;
+    public String     info() {
+        return info;
     }
 
 }
