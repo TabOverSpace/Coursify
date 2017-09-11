@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="#0fafb4"
+            android:elevation="4dp"
+            android:layout_height="?attr/actionBarSize">
+           <ImageView
+               android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:src="@drawable/left_arrow"
+               android:layout_gravity="center_vertical"
+               android:layout_marginLeft="10dp"
+               android:textColor="#fff"
+               android:accessibilityLiveRegion="assertive"
+               android:onClick="back"
+               android:text="&#8426;"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="#fff"
+               android:textSize="20sp"
+               android:id="@+id/what"
+               android:layout_gravity="center"
+               android:text="Results"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="0dp"
+                android:id="@+id/search2"
+                android:onClick="vanish"
+                android:layout_marginRight="12dp"
+                android:layout_gravity="end|center"
+                android:src="@drawable/search"/>
+
+
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="#0fafb4"
+            android:elevation="4dp"
+            android:visibility="gone"
+            android:id="@+id/justvanish"
+            android:layout_height="?attr/actionBarSize">
+
+            <ProgressBar
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="3dp"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:id="@+id/progress2"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/search"
+                android:layout_gravity="center|end"
+                android:src="@drawable/search"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="?attr/actionBarSize"
+            android:textColor="#ffffff"
+            android:textColorHint="#fff"
+            android:layout_marginTop="4dp"
+            android:textColorLink="#00ffffff"
+            android:shadowColor="#fff"
+            android:id="@+id/filter"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center"
+            android:hint="Search Here"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:id="@+id/progress"/>
+
+            <ListView
+            android:layout_width="match_parent"
+            android:id="@+id/list"
+            android:layout_marginTop="0dp"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+
+
+</android.support.v4.widget.DrawerLayout>
