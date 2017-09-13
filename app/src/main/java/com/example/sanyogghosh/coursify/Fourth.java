@@ -217,10 +217,7 @@ public class Fourth extends AppCompatActivity
                 }
             });
         }
-Log.d("c1",String.valueOf(c1));
-        Log.d("c2",String.valueOf(c2));
-        Log.d("c3",String.valueOf(c3));
-        Log.d("c4",String.valueOf(c4));
+
 
     }
 
@@ -283,32 +280,7 @@ Log.d("c1",String.valueOf(c1));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //Below code important
     public final String LOG_TAG = "Not Working!";
 
     
@@ -652,7 +624,7 @@ Log.d("c1",String.valueOf(c1));
 
 
     public void level(String level,List<Course_Holder> courses,Course_Holder ch,JSONArray currentcourses){
-        if(c1==0){
+        if(c1==1){
 
             try {
                 if(currentcourses.getString(1).equals("Udacity")){
@@ -677,7 +649,7 @@ Log.d("c1",String.valueOf(c1));
 
         }
 
-        if(c2==0){
+        if(c2==1){
 
             try {
                 if(currentcourses.getString(1).equals("edx")){
@@ -701,7 +673,7 @@ Log.d("c1",String.valueOf(c1));
             }
         }
 
-        if(c3==0){
+        if(c3==1){
 
             try {
                 if(currentcourses.getString(1).equals("Udemy")){
@@ -725,7 +697,7 @@ Log.d("c1",String.valueOf(c1));
             }
         }
 
-        if(c4==0){
+        if(c4==1){
 
             try {
                 if(currentcourses.getString(1).equals("Coursera")){
