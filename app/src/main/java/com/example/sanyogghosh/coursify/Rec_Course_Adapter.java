@@ -238,14 +238,7 @@ public class Rec_Course_Adapter extends ArrayAdapter<Rec_Course_Holder> {
 
 
         }
-        if(contains.contains("machine")){
 
-            array[4] = 1;
-            draw[4] = R.drawable.chip;
-
-
-
-        }
 
     }
 

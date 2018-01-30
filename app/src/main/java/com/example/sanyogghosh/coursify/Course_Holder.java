@@ -10,17 +10,20 @@ public class Course_Holder {
     public String site;
     public String level;
     public String url;
+    public String url_fi;
+    public String img_url;
 
 
-    public Course_Holder(String course, String provider,String site,String level,String url)
+
+    public Course_Holder(String course, String provider,String site,String level,String url,String url_fi,String img_url)
     {
         this.course=course;
         this.provider=provider;
+        this.url_fi=url_fi;
         this.site=site;
         this.level=level;
         this.url=url;
-
-
+        this.img_url=img_url;
     }
 
     /**
@@ -41,5 +44,10 @@ public class Course_Holder {
     public String     url() {
         return url;
     }
+    public String  img_url(){return img_url;}
+    public String     url_fi() {
+        return url_fi;
+    }
+
 
 }

@@ -18,10 +18,8 @@ public class Coursify_Adapter extends FragmentStatePagerAdapter {
 
         switch (position) {
 
+
             case 0:
-                Recommended tab0 = new Recommended();
-                return tab0;
-            case 1:
                 First tab1 = new First();
                 return tab1;
 

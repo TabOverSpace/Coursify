@@ -14,7 +14,7 @@ public class Introduction extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_introduction);
+        setContentView(R.layout.coursify_intro_page);
 
 
         Typeface a = Typeface.createFromAsset(getAssets(),"fonts/robotoslabbold.ttf");
@@ -44,6 +44,7 @@ public class Introduction extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(),First2.class);
                 startActivity(i);
+                finish();
             }
         }.start();
 

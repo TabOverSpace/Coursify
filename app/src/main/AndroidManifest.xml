@@ -22,24 +22,6 @@
             android:label="@string/title_activity_first"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".Second"
-            android:label="@string/title_activity_second"
-            android:parentActivityName=".First"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sanyogghosh.coursify.First" />
-        </activity>
-        <activity
-            android:name=".Third"
-            android:label="@string/title_activity_third"
-            android:parentActivityName=".First"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sanyogghosh.coursify.First" />
-        </activity>
-        <activity
             android:name=".Fourth"
             android:label="@string/title_activity_fourth"
             android:parentActivityName=".First"
@@ -53,7 +35,9 @@
         <activity
             android:name=".First2"
             android:label="@string/title_activity_first2"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Course_page"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

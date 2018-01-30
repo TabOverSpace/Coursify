@@ -37,7 +37,7 @@ public class Recommended extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-            alone = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.activity_recommended,container, false);
+            alone = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.recommended_courses,container, false);
 
 
 

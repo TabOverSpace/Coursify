@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,6 +19,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
@@ -29,6 +34,10 @@ public class First extends Fragment {
         int agar;
         Runnable m;
         int conditions[];
+        private InterstitialAd adView;  // The ad
+        private AdRequest adRequest;
+        private Handler mHandler;       // Handler to display the ad on the UI thread
+        private Runnable displayAd;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -165,20 +174,14 @@ public class First extends Fragment {
 // Apply the adapter to the spinner
             c.setAdapter(adapter3);
 
-        fonts_set(alone);
-
-
+            fonts_set(alone);
 
             if(A==0){
-
                 b.setAdapter(adapter2);
-
             }
+
             if (A==1){
-
                 b.setAdapter(adapter23);
-
-
             }
 
             b =  (Spinner)alone.findViewById(R.id.spinne2);
@@ -221,27 +224,31 @@ public class First extends Fragment {
 
                     editor.putString("level", "Advanced");
                 }
-
-
                 editor.apply();
-
-
-
+                adRequest = new AdRequest.Builder().build();
+                adView = new InterstitialAd(getContext());
+                //ca-app-pub-1887633011875798~3464801599
+                MobileAds.initialize(getContext(), "ca-app-pub-1887633011875798~3464801599");
+                adView.setAdUnitId("ca-app-pub-1887633011875798/5999341880");
+                mHandler = new Handler(Looper.getMainLooper());
+                displayAd = new Runnable() {
+                    public void run() {
+                        getActivity().runOnUiThread(new Runnable() {
+                            public void run() {
+                                if (adView.isLoaded()) {
+                                    adView.show();
+                                }
+                            }
+                        });
+                    }
+                };
+                loadAd();
+                displayInterstitial();
                 Intent o = new Intent(getActivity().getApplicationContext(),Fourth.class);
-                    startActivity(o);
-                    getActivity().overridePendingTransition(R.anim.move3,R.anim.fade_out);
-
-
-
-
-
-
-
-
-
+                startActivity(o);
+                getActivity().overridePendingTransition(R.anim.move3,R.anim.move_wow);
             }
         });
-
 
             final ImageView f1 = (ImageView)alone.findViewById(R.id.uda);
             f1.setOnClickListener(new View.OnClickListener() {
@@ -256,9 +263,6 @@ public class First extends Fragment {
                     F++;
                 }
             });
-
-
-
 
             final ImageView f2 = (ImageView)alone.findViewById(R.id.edxa);
 
@@ -304,10 +308,6 @@ public class First extends Fragment {
                     J++;
                 }
             });
-
-
-
-
      return alone;
     }
 
@@ -330,7 +330,7 @@ public class First extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-        public void fonts_set(View alone){
+    public void fonts_set(View alone){
 
 
             Typeface ag = Typeface.createFromAsset(getContext().getAssets(),"fonts/robotoslabbold.ttf");
@@ -349,4 +349,15 @@ public class First extends Fragment {
 
         }
 
+    void loadAd() {
+        AdRequest adRequest = new AdRequest.Builder()
+                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+
+        // Load the adView object witht he request
+        adView.loadAd(adRequest);
     }
+    public void displayInterstitial() {
+        mHandler.postDelayed(displayAd, 2000);
+    }
+}

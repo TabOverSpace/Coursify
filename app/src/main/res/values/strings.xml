@@ -6,7 +6,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">About</string>
 
     <string-array name="course_array1">
         <item>Technical</item>
@@ -14,28 +14,24 @@
     </string-array>
 
     <string-array name="course_array2">
-        <item>Biology</item>
-        <item>Computer Graphics</item>
+        <item>Information Technology</item>
+        <item>Data Science</item>
         <item>Computer Science</item>
-        <item>Chemistry</item>
-        <item>Chemical Engineering</item>
+        <item>Math and Logic</item>
         <item>Programming Languages</item>
         <item>Web Development</item>
         <item>App Development</item>
-        <item>OS Development</item>
-        <item>Mechanical Engineering</item>
-        <item>Physics</item>
     </string-array>
 
     <string-array name="course_array3">
-        <item>English</item>
-        <item>English-Literature</item>
-        <item>Entrepreneurship (Management)</item>
-        <item>Finance</item>
-        <item>Geography</item>
-        <item>History</item>
-        <item>Humanities</item>
+        <item>Business</item>
+        <item>Life Sciences</item>
+        <item>Arts and Humanities</item>
+        <item>Personal Development</item>
+        <item>Social Sciences</item>
+        <item>Language Learning</item>
         <item>Philosophy</item>
+        <item>Physical Science and Engineering</item>
     </string-array>
 
     <string-array name="course_array4">

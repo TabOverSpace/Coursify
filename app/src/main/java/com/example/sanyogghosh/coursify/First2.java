@@ -1,8 +1,11 @@
 package com.example.sanyogghosh.coursify;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -13,13 +16,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class First2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TabLayout tabLayout;
+    private InterstitialAd adView;  // The ad
+    private AdRequest adRequest;
+    private Handler mHandler;       // Handler to display the ad on the UI thread
+    private Runnable displayAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +65,8 @@ public class First2 extends AppCompatActivity
 
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.recognize));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.open_book));
+        /*tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.rate_black));*/
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.course_white));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -68,7 +82,7 @@ public class First2 extends AppCompatActivity
         viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        /*tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                                                @Override
                                                public void onTabSelected(TabLayout.Tab tab) {
 
@@ -76,12 +90,12 @@ public class First2 extends AppCompatActivity
                                                    int tabn = tab.getPosition();
                                                    switch (tabn){
                                                        case 0:
-                                                           tabLayout.getTabAt(0).setIcon(R.drawable.yellow_recognize);
-                                                           tabLayout.getTabAt(1).setIcon(R.drawable.open_book);
+                                                           tabLayout.getTabAt(0).setIcon(R.drawable.rate_black);
+                                                           tabLayout.getTabAt(1).setIcon(R.drawable.course_white);
                                                            break;
                                                        case 1:
-                                                           tabLayout.getTabAt(0).setIcon(R.drawable.recognize);
-                                                           tabLayout.getTabAt(1).setIcon(R.drawable.book_blue);
+                                                           tabLayout.getTabAt(0).setIcon(R.drawable.rate_white);
+                                                           tabLayout.getTabAt(1).setIcon(R.drawable.course_black);
                                                            break;
                                                    }
                                                }
@@ -99,7 +113,7 @@ public class First2 extends AppCompatActivity
 
 
         );
-
+*/
 
     }
 
@@ -111,6 +125,11 @@ public class First2 extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
@@ -129,6 +148,26 @@ public class First2 extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            AlertDialog.Builder a = new AlertDialog.Builder(this);
+
+            final TextView ab = new TextView(this);
+            ab.setPadding(70,20,20,0);
+            final SpannableString s = new SpannableString("https://github.com/TabOverSpace/Coursify");
+            Linkify.addLinks(s, Linkify.WEB_URLS);
+            ab.setText(s);
+            ab.setMovementMethod(LinkMovementMethod.getInstance());
+            a.setView(ab);
+
+            a.setTitle("Created by team TabOverSpace");
+            final AlertDialog b = a.create();
+            a.setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                     b.dismiss();
+                }
+            });
+            a.show();
+
             return true;
         }
 
@@ -141,24 +180,14 @@ public class First2 extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+        if (id == R.id.nav_share) {
 
 
             Intent gh = new Intent();
             gh.setAction(Intent.ACTION_SEND);
             gh.setType("text/plain");
-            gh.putExtra(Intent.EXTRA_TEXT,"Coursify - your course kiosk ... \n\n"+ Uri.parse("https://play.google.com/store/apps/details?id=com.example.sanyogghosh.coursify"));
+            gh.putExtra(Intent.EXTRA_TEXT,"Coursify - your course kiosk ... \n\n"+ Uri.parse("https://play.google.com/store/apps/details?id=com.example.sanyogghosh.com.tab.sanyogghosh.coursify"));
             startActivity(gh);
-
-        } else if (id == R.id.nav_send) {
 
         }
 

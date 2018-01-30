@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
@@ -37,7 +38,15 @@
             android:layout_gravity="center"
             android:id="@+id/c_type"
             android:text="Course Type" />
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=":"
+    android:layout_gravity="center"
+    android:textStyle="bold"
+    android:textSize="22sp"
+    android:layout_marginRight="5dp"
+    android:textColor="#fff"/>
         <Spinner
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -70,7 +79,15 @@
                 android:layout_gravity="center"
                 android:id="@+id/s_type"
                 android:text="Subject" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginRight="5dp"
+                android:textColor="#fff"/>
             <Spinner
 
                 android:layout_width="0dp"
@@ -105,7 +122,15 @@
                 android:textAlignment="textStart"
                 android:layout_gravity="center"
                 android:text="Difficulty" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginRight="5dp"
+                android:textColor="#fff"/>
             <Spinner
 
                 android:layout_width="0dp"
@@ -117,6 +142,7 @@
                 android:background="@drawable/course_shape"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -227,8 +253,9 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:text="GET COURSES"
-                android:fontFamily="sans-serif-smallcaps"
+                android:fontFamily="sans-serif-smallcap"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:textSize="17sp"
                 android:textColor="#fff"
                 android:src="@drawable/search"/>
